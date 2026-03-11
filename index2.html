@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Landing</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#dcdcdc;
+}
+
+/* SECCION VERDE */
+
+.hero{
+background:#0b1f3a;
+color:white;
+text-align:center;
+padding:20px 20px 50px 20px;
+}
+
+/* etiqueta superior */
+
+.badge{
+background:#1471db;
+display:inline-block;
+padding:15px 50px;
+font-style:italic;
+font-size:48px;
+margin-bottom:30px;
+}
+
+/* TITULO GRANDE */
+
+.hero h1{
+font-size:40px;
+line-height:1.2;
+max-width:1200px;
+margin:auto;
+font-weight:800;
+}
+
+/* subtitulo */
+
+.hero p{
+font-size:32px;
+margin-top:25px;
+font-weight:700;
+}
+
+/* SECCION GRIS */
+
+.section{
+background:#e3e3e3;
+text-align:center;
+padding:50px 20px 80px;
+}
+
+/* texto negro */
+
+.section h2{
+font-size:34px;
+font-weight:900;
+color:#0a233b;
+max-width:1100px;
+margin:auto;
+line-height:1.3;
+}
+
+/* FORMULARIO */
+
+.formbox{
+margin-top:40px;
+display:flex;
+justify-content:center;
+}
+
+.fakeform{
+width:420px;
+height:520px;
+background:white;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+padding:30px;
+}
+
+/* lineas del formulario */
+
+.line{
+height:16px;
+background:#e6e6e6;
+border-radius:8px;
+margin-bottom:20px;
+}
+
+.line.big{
+height:28px;
+}
+
+.line.small{
+width:40%;
+}
+
+.success-section{
+background:#0b1f3a;
+color:white;
+text-align:center;
+padding:70px 20px 350px 20px;
+
+}
+
+.success-section h2{
+font-size:62px;
+font-weight:800;
+line-height:1.2;
+}
+
+.success-section p{
+margin-top:20px;
+font-size:34px;
+}
+.case-card{
+background:white;
+max-width:1600px;
+margin:60px auto;
+border-radius:20px;
+padding:10px 60px 60px 60px;
+
+
+display:flex;
+gap:40px;
+align-items:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+.case-video{
+width:55%;
+height:450px;
+border-radius:12px;
+overflow:hidden;
+
+margin-top:120px;
+
+
+}
+
+.case-text{
+width:45%;
+color:#0a233b;
+}
+
+.case-text h3{
+font-size:42px;
+margin-top:-50px;
+}
+
+.case-text p{
+font-size:23px;
+margin-bottom:15px;
+line-height:1.4;
+}
+.faq-section{
+background:black;
+padding:100px 20px;
+}
+
+.faq-section h2{
+text-align:center;
+font-size:80px;
+font-weight:900;
+color:white;
+margin-bottom:60px;
+
+
+}
+
+.faq-section h2 span{
+  background: linear-gradient(90deg, #1471db, #19c7b1); /* de #1471db a un celeste suave */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.faq-item{
+  background: linear-gradient(90deg, #1471db, #0f5fb3);
+color:white;
+max-width:1400px;
+margin:20px auto;
+padding:30px 35px;
+
+font-size:26px;
+
+border-radius:6px;
+position:relative;
+overflow:hidden;
+}
+
+.faq-item::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+opacity:0;
+transition:0.5s;
+}
+
+.faq-item:hover::after{
+opacity:1;
+}
+
+.faq-item:hover{
+color:white;
+}
+.faq-item{
+position:relative;
+z-index:0;
+}
+
+.faq-item::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+opacity:0;
+transition:0.5s;
+z-index:-1;
+}
+
+.faq-item:hover::after{
+opacity:1;
+}
+.footer{
+background:#081f3a;
+padding:120px 60px 60px 60px;
+
+display:flex;
+flex-direction:column;   /* logo arriba, links abajo */
+align-items:center;
+gap:40px;
+}
+.footer{
+  position: relative;
+  background:#081f3a;
+  padding:120px 60px 60px 60px;
+}
+
+.footer-logo{
+  width:440px;
+  position: absolute;
+  top: 70px;    /* ajusta hacia arriba/bajo */
+  left: 240px;   /* ajusta hacia la izquierda/derecha */
+}
+.footer-links{
+display:flex;
+gap:90px;
+color:white;
+font-size:30px;
+flex-wrap:wrap;
+text-align:center;
+justify-content:center;
+  margin-top: 130px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="hero">
+
+<div class="badge">
+*Para coaches, mentores, infoproductores y agencias
+</div>
+
+<h1>
+Vamos a Instalar un Sistema de Adquisición Orgánica con Reels, Carruseles e Historias de Instagram con el que escalamos a +150 personas a 10K - 100K
+</h1>
+
+<p>
+Sin tirar dinero en anuncios, sin lanzamientos y sin perder el tiempo en embudos complicados.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h2>
+LLENA LA APLICACIÓN DEBAJO PARA VER SI CALIFICAS, LUEGO AGENDA UNA LLAMADA DE AUDITORÍA EN LA QUE TE VAMOS A MOSTRAR COMO FUNCIONA NUESTRO SISTEMA A DETALLE
+</h2>
+
+<div class="formbox">
+
+<div class="fakeform">
+
+<div class="line big"></div>
+<div class="line"></div>
+<div class="line small"></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="success-section">
+
+<h2>
+10 casos de exito en $100K/mes <br>
+Más de 150 casos de éxito en +$10K/mes
+</h2>
+
+<p>
+Estas son algunas de las personas con las que hemos trabajado ⇩
+</p>
+
+<div class="case-card">
+
+<div class="case-video">
+
+<iframe 
+width="100%" 
+height="100%" 
+src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+title="video"
+frameborder="0"
+allowfullscreen>
+</iframe>
+
+
+</div>
+
+
+<div class="case-text">
+
+<h3>Consultor de Finanzas +$100.000 USD/mes</h3>
+
+<p>
+Estancado en $30K al mes. Dependía de anuncios para vender.<br><br>
+
+En su primer mes aplicando nuestros sistemas de contenido y adquisición orgánica duplicó su facturación a $60.000 USD.<br><br>
+
+En el segundo mes generó $100.000 USD invirtiendo solo $2.000 USD en ads.<br><br>
+
+Pasamos su orgánico de $3.000 USD a $100.000 USD.
+</p>
+
+</div>
+
+</div>
+
+<div class="case-card">
+
+<div class="case-video">
+<iframe 
+width="100%" 
+height="100%" 
+src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="case-text">
+<h3>Otro caso de éxito</h3>
+
+<p>
+Texto del caso.<br><br>
+Explicación del crecimiento.<br><br>
+Resultados obtenidos.<br><br>
+Más información del cliente.
+</p>
+
+</div>
+
+</div>
+
+<div class="case-card">
+
+<div class="case-video">
+<iframe 
+width="100%" 
+height="100%" 
+src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="case-text">
+<h3>Otro caso de éxito</h3>
+
+<p>
+Texto del caso.<br><br>
+Explicación del crecimiento.<br><br>
+Resultados obtenidos.<br><br>
+Más información del cliente.
+</p>
+
+</div>
+
+</div>
+
+<div class="case-card">
+
+<div class="case-video">
+<iframe 
+width="100%" 
+height="100%" 
+src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="case-text">
+<h3>Otro caso de éxito</h3>
+
+<p>
+Texto del caso.<br><br>
+Explicación del crecimiento.<br><br>
+Resultados obtenidos.<br><br>
+Más información del cliente.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+<div class="faq-section">
+
+<h2>Preguntas <span>Frecuentes</span></h2>
+
+<div class="faq-item">¿Necesito experiencia previa para empezar?</div>
+<div class="faq-item">¿Qué tipo de conocimiento puedo vender?</div>
+<div class="faq-item">¿Puedo vender el conocimiento de otra persona?</div>
+<div class="faq-item">¿Cuánto tiempo toma empezar a ver resultados?</div>
+<div class="faq-item">¿Qué incluye el programa?</div>
+<div class="faq-item">¿Qué pasa si no me funciona?</div>
+<div class="faq-item">¿Voy a tener contacto con Ramiro?</div>
+<div class="faq-item">¿Cuánto tiempo tengo que dedicarle por día?</div>
+<div class="faq-item">¿Es necesario invertir en anuncios desde el principio?</div>
+<div class="faq-item">¿Qué diferencia a Sell Your Knowledge de otros programas?</div>
+<div class="faq-item">¿Puedo acceder desde cualquier lugar del mundo?</div>
+<div class="faq-item">¿Cómo empiezo?</div>
+
+</div>
+
+<div class="footer">
+
+<img src="a.png" class="footer-logo">
+
+<div class="footer-links">
+<span>Política de<br>Privacidad</span>
+<span>Protección de<br>Datos</span>
+<span>Anexo de Protección de<br>Datos</span>
+<span>Términos y<br>Condiciones</span>
+<span>Descargo de<br>Responsabilidad sobre<br>ingresos</span>
+</div>
+
+</div>
+
+</body>
+</html>
