@@ -18,7 +18,9 @@ body{
 font-family: Arial, Helvetica, sans-serif;
 background:#dcdcdc;
 }
-
+.scale-wrapper {
+  zoom: 0.75;          /* reduce todo al 75% sin dejar bordes */
+}
 /* SECCION VERDE */
 
 .hero{
@@ -280,7 +282,7 @@ justify-content:center;
 </head>
 
 <body>
-
+<div class="scale-wrapper">
 <div class="hero">
 
 <div class="badge">
@@ -481,6 +483,7 @@ Más información del cliente.
 <span>Descargo de<br>Responsabilidad sobre<br>ingresos</span>
 </div>
 
+</div>
 </div>
 
 </body>
