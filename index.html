@@ -1,490 +1,754 @@
 <!DOCTYPE html>
 <html lang="es">
+<head><!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Landing</title>
-
+<title>BFX Academy — Opera el XAUUSD como un Profesional</title>
 <style>
+  :root {
+    --bg: #000000;
+    --bg2: #070d1a;
+    --bg3: #0c1322;
+    --blue: #1a6fff;
+    --blue-light: #4d8fff;
+    --blue-dim: rgba(26,111,255,0.12);
+    --blue-glow: rgba(26,111,255,0.3);
+    --text: #ffffff;
+    --text-muted: #475569;
+    --text-mid: #94a3b8;
+    --border: rgba(26,111,255,0.2);
+    --border-white: rgba(255,255,255,0.07);
+  }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-body{
-font-family: Arial, Helvetica, sans-serif;
-background:#dcdcdc;
-}
-.scale-wrapper {
-  zoom: 0.75;          /* reduce todo al 75% sin dejar bordes */
-}
-/* SECCION VERDE */
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-.hero{
-background:#0b1f3a;
-color:white;
-text-align:center;
-padding:20px 20px 50px 20px;
-}
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(26,111,255,0.55);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: all 0.14s ease;
+  }
 
-/* etiqueta superior */
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 64px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.97) 60%, transparent);
+  }
+  .nav-logo { font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--blue); }
+  .nav-cta {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--blue);
+    border: 1px solid var(--border); padding: 10px 26px;
+    text-decoration: none; transition: all 0.3s; cursor: none; border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--blue-dim); border-color: var(--blue-light); }
 
-.badge{
-background:#1471db;
-display:inline-block;
-padding:15px 50px;
-font-style:italic;
-font-size:48px;
-margin-bottom:30px;
-}
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    align-items: center;
+    gap: 60px;
+    padding: 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
 
-/* TITULO GRANDE */
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 65% at 30% 50%, rgba(26,111,255,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 45% at 85% 30%, rgba(26,111,255,0.05) 0%, transparent 55%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(26,111,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,111,255,0.045) 1px, transparent 1px);
+    background-size: 70px 70px;
+    mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black, transparent);
+  }
 
-.hero h1{
-font-size:40px;
-line-height:1.2;
-max-width:1200px;
-margin:auto;
-font-weight:800;
-}
+  .hero-left {
+    position: relative;
+    opacity: 0; transform: translateY(28px);
+    animation: fadeUp 1s 0.3s forwards;
+  }
 
-/* subtitulo */
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.67rem; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 30px; margin-top: 40px;
+  }
+  .hero-tag::before { content: ''; width: 34px; height: 1px; background: var(--blue); }
 
-.hero p{
-font-size:32px;
-margin-top:25px;
-font-weight:700;
-}
+  h1 {
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    line-height: 1.07; font-weight: 700; letter-spacing: -0.025em;
+    color: #fff; margin-bottom: 26px;
+  }
+  h1 em { font-style: normal; color: var(--blue); }
 
-/* SECCION GRIS */
+  .hero-desc {
+    font-size: 1rem; line-height: 1.85; color: var(--text-mid);
+    max-width: 520px; margin-bottom: 44px; font-weight: 300;
+  }
 
-.section{
-background:#e3e3e3;
-text-align:center;
-padding:50px 20px 80px;
-}
+  .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
 
-/* texto negro */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--blue); color: #fff; font-family: inherit;
+    font-size: 0.73rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; padding: 17px 36px;
+    text-decoration: none; transition: all 0.3s; cursor: none;
+    border-radius: 2px; position: relative; overflow: hidden;
+    box-shadow: 0 0 28px rgba(26,111,255,0.35);
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(-100%); transition: transform 0.4s;
+  }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary:hover { background: var(--blue-light); box-shadow: 0 0 42px rgba(26,111,255,0.5); }
+  .btn-arrow { transition: transform 0.3s; }
+  .btn-primary:hover .btn-arrow { transform: translateX(5px); }
 
-.section h2{
-font-size:34px;
-font-weight:900;
-color:#0a233b;
-max-width:1100px;
-margin:auto;
-line-height:1.3;
-}
+  .hero-note { font-size: 0.72rem; color: var(--text-muted); }
 
-/* FORMULARIO */
+  .hero-stats {
+    display: flex; gap: 52px; margin-top: 60px;
+    padding-top: 44px; border-top: 1px solid var(--border-white);
+  }
+  .stat-num {
+    font-size: 2.3rem; font-weight: 700; color: var(--blue);
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.63rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-muted); margin-top: 5px;
+  }
 
-.formbox{
-margin-top:40px;
-display:flex;
-justify-content:center;
-}
+  /* HERO FORM */
+  .hero-right {
+    position: relative; z-index: 2;
+    opacity: 0; transform: translateY(28px);
+    animation: fadeUp 1s 0.55s forwards;
+  }
 
-.fakeform{
-width:420px;
-height:520px;
-background:white;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-padding:30px;
-}
+  .booking-card {
+    background: rgba(7,13,26,0.9);
+    border: 1px solid var(--border);
+    padding: 42px 38px; border-radius: 6px;
+    backdrop-filter: blur(24px);
+    position: relative;
+  }
+  .booking-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--blue), transparent);
+    border-radius: 6px 6px 0 0;
+  }
 
-/* lineas del formulario */
+  .bc-badge {
+    display: inline-block;
+    background: var(--blue-dim); border: 1px solid var(--border);
+    color: var(--blue); font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 5px 13px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .bc-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -0.01em; }
+  .bc-sub { font-size: 0.73rem; color: var(--text-muted); margin-bottom: 26px; }
 
-.line{
-height:16px;
-background:#e6e6e6;
-border-radius:8px;
-margin-bottom:20px;
-}
+  .form-group { margin-bottom: 13px; }
+  .form-group label {
+    display: block; font-size: 0.63rem; letter-spacing: 0.17em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(0,0,0,0.55);
+    border: 1px solid var(--border-white); color: var(--text);
+    font-family: inherit; font-size: 0.87rem; font-weight: 300;
+    padding: 13px 15px; outline: none; transition: border-color 0.3s;
+    -webkit-appearance: none; border-radius: 2px;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+  .form-group select option { background: #0c1322; }
+  .form-group textarea { resize: none; height: 68px; }
 
-.line.big{
-height:28px;
-}
+  .form-submit {
+    width: 100%; background: var(--blue); color: #fff; font-family: inherit;
+    font-size: 0.71rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; padding: 15px; border: none; cursor: none;
+    margin-top: 6px; transition: all 0.3s; border-radius: 2px;
+    box-shadow: 0 0 18px rgba(26,111,255,0.28);
+  }
+  .form-submit:hover { background: var(--blue-light); }
+  .form-privacy { font-size: 0.63rem; color: var(--text-muted); text-align: center; margin-top: 11px; line-height: 1.5; }
 
-.line.small{
-width:40%;
-}
+  .success-msg {
+    display: none; text-align: center; padding: 36px 16px;
+    color: var(--blue-light); font-size: 1.25rem; font-weight: 600;
+    letter-spacing: -0.01em;
+  }
 
-.success-section{
-background:#0b1f3a;
-color:white;
-text-align:center;
-padding:70px 20px 350px 20px;
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 130px 64px; background: var(--bg2);
+    position: relative; overflow: hidden;
+  }
+  .testimonials::after {
+    content: '❝'; position: absolute; top: 30px; right: 40px;
+    font-size: 18rem; color: rgba(26,111,255,0.03);
+    line-height: 1; pointer-events: none;
+  }
 
-}
+  .section-label {
+    font-size: 0.64rem; font-weight: 500; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--blue); }
 
-.success-section h2{
-font-size:62px;
-font-weight:800;
-line-height:1.2;
-}
+  .section-title {
+    font-size: clamp(1.85rem, 3.5vw, 2.8rem); font-weight: 700;
+    letter-spacing: -0.025em; margin-bottom: 68px;
+    max-width: 540px; line-height: 1.18;
+  }
 
-.success-section p{
-margin-top:20px;
-font-size:34px;
-}
-.case-card{
-background:white;
-max-width:1600px;
-margin:60px auto;
-border-radius:20px;
-padding:10px 60px 60px 60px;
+  .testimonials-grid {
+    display: grid; grid-template-columns: 1.35fr 1fr;
+    gap: 2px; background: var(--border);
+  }
 
+  .testimonial-card {
+    background: var(--bg2); padding: 46px;
+    opacity: 0; transform: translateY(20px); transition: all 0.6s;
+  }
+  .testimonial-card.visible { opacity: 1; transform: translateY(0); }
+  .testimonial-card:first-child { border-left: 2px solid var(--blue); }
+  .testimonial-card-sm { background: var(--bg3); padding: 38px; display: flex; flex-direction: column; justify-content: space-between; }
 
-display:flex;
-gap:40px;
-align-items:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.6);
-}
+  .t-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(26,111,255,0.1); border: 1px solid var(--border);
+    color: #7eb8ff; font-size: 0.67rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 13px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .t-badge::before { content: '↑'; }
 
-.case-video{
-width:55%;
-height:450px;
-border-radius:12px;
-overflow:hidden;
+  .testimonial-stars { display: flex; gap: 3px; margin-bottom: 18px; }
+  .star { color: var(--blue); font-size: 0.85rem; }
 
-margin-top:120px;
+  .testimonial-text {
+    font-size: 1rem; font-weight: 300; line-height: 1.78;
+    color: #d1d5db; margin-bottom: 30px;
+  }
 
+  .testimonial-author { display: flex; align-items: center; gap: 13px; }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--blue-dim); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; font-weight: 600; color: var(--blue); flex-shrink: 0;
+  }
+  .author-name { font-size: 0.84rem; font-weight: 500; color: #fff; }
+  .author-role { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
 
-}
+  /* FAQ */
+  .faq { padding: 130px 64px; background: var(--bg); }
+  .faq-inner { max-width: 860px; margin: 0 auto; }
 
-.case-text{
-width:45%;
-color:#0a233b;
-}
+  .faq-list {
+    border: 1px solid var(--border-white);
+    border-radius: 4px; overflow: hidden;
+  }
 
-.case-text h3{
-font-size:42px;
-margin-top:-50px;
-}
+  .faq-item {
+    border-bottom: 1px solid var(--border-white);
+    opacity: 0; transform: translateY(14px); transition: opacity 0.5s, transform 0.5s;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item.visible { opacity: 1; transform: translateY(0); }
 
-.case-text p{
-font-size:23px;
-margin-bottom:15px;
-line-height:1.4;
-}
-.faq-section{
-background:black;
-padding:100px 20px;
-}
+  .faq-q {
+    width: 100%; background: none; border: none; color: #fff;
+    font-family: inherit; font-size: 0.96rem; font-weight: 500;
+    text-align: left; padding: 26px 34px; cursor: none;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 18px; transition: background 0.2s; letter-spacing: -0.01em; line-height: 1.4;
+  }
+  .faq-q:hover { background: rgba(26,111,255,0.05); }
+  .faq-q.open { color: var(--blue); background: var(--blue-dim); }
 
-.faq-section h2{
-text-align:center;
-font-size:80px;
-font-weight:900;
-color:white;
-margin-bottom:60px;
+  .faq-icon {
+    width: 24px; height: 24px; border: 1px solid var(--border); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0; transition: all 0.3s; color: var(--blue);
+  }
+  .faq-q.open .faq-icon { background: var(--blue); color: #fff; transform: rotate(45deg); }
 
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s; padding: 0 34px; }
+  .faq-a.open { max-height: 500px; padding: 0 34px 26px; }
+  .faq-a p {
+    font-size: 0.91rem; font-weight: 300; line-height: 1.88;
+    color: var(--text-mid); border-left: 2px solid var(--blue); padding-left: 16px;
+  }
 
-}
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s, transform 0.65s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-.faq-section h2 span{
-  background: linear-gradient(90deg, #1471db, #19c7b1); /* de #1471db a un celeste suave */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border-white);
+    padding: 34px 64px; display: flex;
+    justify-content: space-between; align-items: center; background: var(--bg);
+  }
+  .footer-logo { font-size: 1rem; font-weight: 700; color: #fff; }
+  .footer-logo span { color: var(--blue); }
+  .footer-copy { font-size: 0.68rem; color: var(--text-muted); }
 
-.faq-item{
-  background: linear-gradient(90deg, #1471db, #0f5fb3);
-color:white;
-max-width:1400px;
-margin:20px auto;
-padding:30px 35px;
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-font-size:26px;
-
-border-radius:6px;
-position:relative;
-overflow:hidden;
-}
-
-.faq-item::after{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-opacity:0;
-transition:0.5s;
-}
-
-.faq-item:hover::after{
-opacity:1;
-}
-
-.faq-item:hover{
-color:white;
-}
-.faq-item{
-position:relative;
-z-index:0;
-}
-
-.faq-item::after{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-opacity:0;
-transition:0.5s;
-z-index:-1;
-}
-
-.faq-item:hover::after{
-opacity:1;
-}
-.footer{
-background:#081f3a;
-padding:120px 60px 60px 60px;
-
-display:flex;
-flex-direction:column;   /* logo arriba, links abajo */
-align-items:center;
-gap:40px;
-}
-.footer{
-  position: relative;
-  background:#081f3a;
-  padding:120px 60px 60px 60px;
-}
-
-.footer-logo{
-  width:440px;
-  position: absolute;
-  top: 70px;    /* ajusta hacia arriba/bajo */
-  left: 240px;   /* ajusta hacia la izquierda/derecha */
-}
-.footer-links{
-display:flex;
-gap:90px;
-color:white;
-font-size:30px;
-flex-wrap:wrap;
-text-align:center;
-justify-content:center;
-  margin-top: 130px;
-}
-
+  @media (max-width: 1050px) {
+    .hero { grid-template-columns: 1fr; padding: 120px 32px 80px; }
+    .hero-right { max-width: 500px; }
+    .hero-stats { gap: 36px; }
+    .testimonials, .faq { padding: 80px 32px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 10px; padding: 28px 24px; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 20px 20px; }
+    .hero { padding: 110px 20px 70px; }
+    .testimonials, .faq { padding: 70px 20px; }
+    .faq-q { padding: 22px 20px; font-size: 0.9rem; }
+    .faq-a { padding: 0 20px; }
+    .faq-a.open { padding: 0 20px 20px; }
+    .testimonial-card, .testimonial-card-sm { padding: 32px 24px; }
+  }
 </style>
-
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
-
 <body>
-<div class="scale-wrapper">
-<div class="hero">
 
-<div class="badge">
-*Para coaches, mentores, infoproductores y agencias
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BFX&nbsp;<span>Academy</span></div>
+  <a href="#inicio" class="nav-cta">Llamada gratuita</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">Mentoría de Trading Profesional</div>
+    <h1>Domina el <em>XAUUSD</em><br>y opera el Oro<br>como un <em>Profesional.</em></h1>
+    <p class="hero-desc">
+      Aprende a operar el mercado del Oro con un sistema institucional probado, 
+      gestión de riesgo real y un Plan de Trading personalizado. 
+      Sin atajos — solo disciplina, estructura y resultados medibles.
+    </p>
+    <div class="hero-actions">
+
+<a href="#" class="btn-primary" style="display:inline-flex;"
+onclick="Calendly.initPopupWidget({url: 'https://calendly.com/danielesco2004'});return false;">
+Agendar llamada gratuita
+<span class="btn-arrow">→</span>
+</a>
+
+        Agenda tu llamada gratuita
+        <span class="btn-arrow">→</span>
+      </a>
+      <span class="hero-note">Sin compromisos · 30 minutos · Cupos limitados</span>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num" data-target="94">0</div>
+        <div class="stat-label">Estudiantes satisfechos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="6">0</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="20">0</div>
+        <div class="stat-label">Estudiantes rentables</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING FORM -->
+  <div class="hero-right">
+    <div class="booking-card">
+      <div id="formContainer">
+        <div class="bc-badge">Llamada Gratuita</div>
+        <h3 class="bc-title">Reserva tu espacio</h3>
+        <p class="bc-sub">Cupos limitados · Respuesta en menos de 2 horas</p>
+
+<form 
+action="https://formspree.io/f/xwvrrkyg" 
+method="POST"
+onsubmit="setTimeout(()=>{document.getElementById('formContainer').style.display='none';document.getElementById('successMsg').style.display='block';},400);"
+>
+
+<input type="hidden" name="_subject" value="Nuevo lead BFX Academy">
+
+<div class="form-group">
+<label>Nombre completo</label>
+<input type="text" name="nombre" placeholder="Tu nombre" required>
 </div>
 
-<h1>
-Vamos a Instalar un Sistema de Adquisición Orgánica con Reels, Carruseles e Historias de Instagram con el que escalamos a +150 personas a 10K - 100K
-</h1>
-
-<p>
-Sin tirar dinero en anuncios, sin lanzamientos y sin perder el tiempo en embudos complicados.
-</p>
-
+<div class="form-group">
+<label>Correo electrónico</label>
+<input type="email" name="email" placeholder="tu@email.com" required>
 </div>
 
-
-<div class="section">
-
-<h2>
-LLENA LA APLICACIÓN DEBAJO PARA VER SI CALIFICAS, LUEGO AGENDA UNA LLAMADA DE AUDITORÍA EN LA QUE TE VAMOS A MOSTRAR COMO FUNCIONA NUESTRO SISTEMA A DETALLE
-</h2>
-
-<div class="formbox">
-
-<div class="fakeform">
-
-<div class="line big"></div>
-<div class="line"></div>
-<div class="line small"></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"></div>
-
+<div class="form-group">
+<label>¿Tienes experiencia en trading?</label>
+<select name="experiencia" required>
+<option value="" disabled selected>Selecciona una opción</option>
+<option>Soy completamente nuevo</option>
+<option>Tengo conocimientos básicos</option>
+<option>Opero pero no soy rentable aún</option>
+<option>Opero de forma intermitente</option>
+</select>
 </div>
 
+<div class="form-group">
+<label>¿Qué te motivó a buscar mentoría?</label>
+<textarea name="mensaje" placeholder="Cuéntanos brevemente tu situación..."></textarea>
 </div>
 
-</div>
+<button type="submit" class="form-submit">
+Reservar llamada gratuita →
+</button>
 
-<div class="success-section">
+</form>
+      </div>
 
-<h2>
-10 casos de exito en $100K/mes <br>
-Más de 150 casos de éxito en +$10K/mes
-</h2>
+      <div class="success-msg" id="successMsg">
+        ✦ ¡Solicitud recibida!<br>
+        <span style="font-size:0.8rem;font-weight:300;color:var(--text-mid);display:block;margin-top:12px;">
+          Te contactaremos en menos de 2 horas para confirmar tu espacio.
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>
-Estas son algunas de las personas con las que hemos trabajado ⇩
-</p>
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonios">
+  <div class="section-label">Resultados reales</div>
+  <h2 class="section-title">Lo que nuestros <span style="color:var(--blue)">Estudiantes</span> dicen de nosotros</h2>
 
-<div class="case-card">
+  <div class="testimonials-grid">
 
-<div class="case-video">
+    <div class="testimonial-card reveal">
+      <div class="t-badge">Retiro total: $4,200 USD</div>
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">
+        "Llevaba dos años perdiendo dinero en forex hasta que entré a BFX Academy. El Plan de Trading que me entregaron cambió todo — por primera vez tengo reglas claras, disciplina y consistencia real. En 4 meses ya retiré $4,200 dólares de mi cuenta. Esto es completamente real y verificable."
+      </p>
+      <div class="testimonial-author">
+        <div class="author-avatar">C</div>
+        <div>
+          <div class="author-name">Carlos M.</div>
+          <div class="author-role">Estudiante BFX · México</div>
+        </div>
+      </div>
+    </div>
 
-<iframe 
-width="100%" 
-height="100%" 
-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-title="video"
-frameborder="0"
-allowfullscreen>
-</iframe>
+    <div class="testimonial-card testimonial-card-sm reveal" style="transition-delay:0.12s">
+      <div>
+        <div class="t-badge">Cuenta de Fondeo Aprobada — $25K</div>
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-text">
+          "En menos de 60 días aprobé mi primera cuenta de fondeo de $25,000 USD. El sistema del XAUUSD que enseñan es muy preciso. Nunca creí que sería posible tan rápido partiendo desde cero."
+        </p>
+      </div>
+      <div class="testimonial-author">
+        <div class="author-avatar">L</div>
+        <div>
+          <div class="author-name">Laura P.</div>
+          <div class="author-role">Estudiante BFX · Colombia</div>
+        </div>
+      </div>
+    </div>
 
+    <div class="testimonial-card testimonial-card-sm reveal" style="transition-delay:0.22s">
+      <div>
+        <div class="t-badge">Retiro total: $1,850 USD</div>
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-text">
+          "Empecé sin saber absolutamente nada de trading. Hoy genero entre $30 y $80 diarios operando el Oro con el plan que me dieron. Lo mejor es que soy completamente independiente."
+        </p>
+      </div>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div>
+          <div class="author-name">Andrés R.</div>
+          <div class="author-role">Estudiante BFX · Venezuela</div>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <div class="testimonial-card reveal" style="transition-delay:0.32s">
+      <div class="t-badge">Retiro total: $6,700 USD</div>
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">
+        "Tenía mucho miedo de invertir en una mentoría después de malas experiencias. BFX es diferente — hay seguimiento real, el mentor opera en vivo y el Plan de Trading es específico para el XAUUSD. Llevo $6,700 retirados en total y esto recién comienza."
+      </p>
+      <div class="testimonial-author">
+        <div class="author-avatar">D</div>
+        <div>
+          <div class="author-name">Diana F.</div>
+          <div class="author-role">Estudiante BFX · Perú</div>
+        </div>
+      </div>
+    </div>
 
+  </div>
+</section>
 
-<div class="case-text">
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="section-label reveal">Preguntas frecuentes</div>
+    <h2 class="section-title reveal" style="margin-bottom:52px">Todo lo que necesitas <span style="color:var(--blue)">saber</span> antes de empezar</h2>
 
-<h3>Consultor de Finanzas +$100.000 USD/mes</h3>
+    <div class="faq-list">
 
-<p>
-Estancado en $30K al mes. Dependía de anuncios para vender.<br><br>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿En cuánto tiempo tendré resultados?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Todo depende de la dedicación de estudio y práctica que apliques. Sin embargo, con nuestro sistema estructurado y la duración de la mentoría, la mayoría de estudiantes ya opera de forma independiente y genera ganancias mínimas de $30 a $50 diarios — o está listo para aplicar a una cuenta de fondeo — antes de finalizar el programa.</p>
+        </div>
+      </div>
 
-En su primer mes aplicando nuestros sistemas de contenido y adquisición orgánica duplicó su facturación a $60.000 USD.<br><br>
+      <div class="faq-item reveal" style="transition-delay:0.05s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Necesito experiencia previa en trading para unirme?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>No. La mentoría está diseñada para aceptar estudiantes desde cero. Comenzamos desde los fundamentos del mercado del Oro (XAUUSD), análisis técnico aplicado, gestión de riesgo y psicología del trading. Si ya tienes experiencia previa, simplemente avanzamos más rápido hacia estrategias avanzadas y cuentas de fondeo.</p>
+        </div>
+      </div>
 
-En el segundo mes generó $100.000 USD invirtiendo solo $2.000 USD en ads.<br><br>
+      <div class="faq-item reveal" style="transition-delay:0.1s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué incluye exactamente el Plan de Trading?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>El Plan de Trading es un documento personalizado que incluye: tus reglas de entrada y salida, gestión de riesgo calibrada a tu capital, horarios óptimos de operación en el XAUUSD, los setups específicos que debes buscar y un registro de operaciones para medir tu progreso. Es tu hoja de ruta para operar con disciplina y consistencia desde el primer día.</p>
+        </div>
+      </div>
 
-Pasamos su orgánico de $3.000 USD a $100.000 USD.
-</p>
+      <div class="faq-item reveal" style="transition-delay:0.15s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto capital necesito para empezar?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Puedes comenzar con una cuenta demo sin arriesgar capital real mientras dominas el sistema. Para cuentas reales, recomendamos un mínimo de $200 USD. También puedes aplicar a una cuenta de fondeo (desde $10,000 USD) donde una empresa te presta el capital a cambio de un porcentaje de las ganancias, sin arriesgar dinero propio.</p>
+        </div>
+      </div>
 
-</div>
+      <div class="faq-item reveal" style="transition-delay:0.2s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué es una cuenta de fondeo y cómo puedo calificar?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Una cuenta de fondeo es capital que una empresa propietaria te presta para operar, a cambio de una comisión sobre tus ganancias (entre 70% y 90% para ti). Para calificar, debes pasar una evaluación donde demuestras rentabilidad y gestión de riesgo. La mentoría BFX te prepara específicamente para aprobar estos desafíos con confianza y consistencia.</p>
+        </div>
+      </div>
 
-</div>
+      <div class="faq-item reveal" style="transition-delay:0.25s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto tiempo al día necesito dedicarle al trading?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>El XAUUSD tiene sesiones clave de alta liquidez de 2 a 3 horas diarias (apertura de Londres y Nueva York). Con el sistema BFX no necesitas estar frente a la pantalla todo el día — aprendes a identificar setups de alta probabilidad y a colocar órdenes con precisión. Dedicar 2 a 3 horas diarias es suficiente para operar de forma profesional.</p>
+        </div>
+      </div>
 
-<div class="case-card">
+      <div class="faq-item reveal" style="transition-delay:0.3s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Tengo soporte y seguimiento durante la mentoría?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Sí. Tendrás acceso directo al mentor durante toda la duración de la mentoría a través de un canal privado. Además, hay sesiones de revisión en vivo donde se analizan operaciones reales del XAUUSD en tiempo real. No estudias solo — tienes soporte continuo hasta que seas completamente independiente y rentable.</p>
+        </div>
+      </div>
 
-<div class="case-video">
-<iframe 
-width="100%" 
-height="100%" 
-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-frameborder="0"
-allowfullscreen>
-</iframe>
-</div>
+      <div class="faq-item reveal" style="transition-delay:0.35s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Es seguro y legal operar el XAUUSD?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Sí. El Oro (XAUUSD) es uno de los activos más líquidos y regulados del mundo, operado por millones de traders e instituciones financieras globalmente. Lo importante es operar a través de brokers regulados (que recomendamos según tu país) y con gestión de riesgo adecuada. La mentoría incluye orientación para elegir el broker correcto y operar de forma segura y responsable.</p>
+        </div>
+      </div>
 
-<div class="case-text">
-<h3>Otro caso de éxito</h3>
+      <div class="faq-item reveal" style="transition-delay:0.4s">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué diferencia a BFX Academy de otras mentorías de trading?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>A diferencia de cursos genéricos, BFX Academy se enfoca exclusivamente en el XAUUSD con un sistema desarrollado y probado durante más de 6 años. Cada estudiante recibe un Plan de Trading personalizado, seguimiento individual y acceso a sesiones en vivo. No vendemos promesas — entregamos un sistema replicable con resultados documentados por nuestros propios estudiantes.</p>
+        </div>
+      </div>
 
-<p>
-Texto del caso.<br><br>
-Explicación del crecimiento.<br><br>
-Resultados obtenidos.<br><br>
-Más información del cliente.
-</p>
+    </div>
 
-</div>
+    <div class="reveal" style="text-align:center;margin-top:60px;transition-delay:0.2s">
+      <p style="color:var(--text-mid);font-size:0.93rem;margin-bottom:26px;">¿Tienes más preguntas? Tu llamada gratuita es el mejor lugar para resolverlas.</p>
+      <a href="#inicio" class="btn-primary" style="display:inline-flex;" onclick="document.querySelector('.booking-card').scrollIntoView({behavior:'smooth'});return false;">
+        Agendar llamada gratuita
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BFX&nbsp;<span>Academy</span></div>
+  <div class="footer-copy">© 2025 BFX Academy · Todos los derechos reservados</div>
+</footer>
 
-<div class="case-card">
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+  (function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
+  document.querySelectorAll('a,button,input,select,textarea').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.8)');
+    el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
+  });
 
-<div class="case-video">
-<iframe 
-width="100%" 
-height="100%" 
-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-frameborder="0"
-allowfullscreen>
-</iframe>
-</div>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal,.faq-item,.testimonial-card').forEach(el=>obs.observe(el));
 
-<div class="case-text">
-<h3>Otro caso de éxito</h3>
+  // FAQ
+  function toggleFaq(btn){
+    const ans=btn.nextElementSibling;
+    const isOpen=ans.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(a=>{a.classList.remove('open');a.previousElementSibling.classList.remove('open');});
+    if(!isOpen){ans.classList.add('open');btn.classList.add('open');}
+  }
 
-<p>
-Texto del caso.<br><br>
-Explicación del crecimiento.<br><br>
-Resultados obtenidos.<br><br>
-Más información del cliente.
-</p>
+// COUNTER STATS
+const counters = document.querySelectorAll('.stat-num');
 
-</div>
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
 
-</div>
+    if(entry.isIntersecting){
 
-<div class="case-card">
+      const el = entry.target;
+      const target = +el.dataset.target;
 
-<div class="case-video">
-<iframe 
-width="100%" 
-height="100%" 
-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-frameborder="0"
-allowfullscreen>
-</iframe>
-</div>
+      let count = 0;
+      const increment = target / 120; // controla velocidad general
 
-<div class="case-text">
-<h3>Otro caso de éxito</h3>
+      function update(){
 
-<p>
-Texto del caso.<br><br>
-Explicación del crecimiento.<br><br>
-Resultados obtenidos.<br><br>
-Más información del cliente.
-</p>
+        count += increment;
 
-</div>
+        if(count >= target) count = target;
 
-</div>
+        const value = Math.floor(count);
 
+        if(target === 94){
+          el.textContent = value + "%";
+        }
+        else if(target === 6){
+          el.textContent = value + "+";
+        }
+        else if(target === 20){
+          el.textContent = "+" + value;
+        }
 
-</div>
+        if(count < target){
+          requestAnimationFrame(update);
+        }
 
-<div class="faq-section">
+      }
 
-<h2>Preguntas <span>Frecuentes</span></h2>
+      update();
+      counterObserver.unobserve(el);
 
-<div class="faq-item">¿Necesito experiencia previa para empezar?</div>
-<div class="faq-item">¿Qué tipo de conocimiento puedo vender?</div>
-<div class="faq-item">¿Puedo vender el conocimiento de otra persona?</div>
-<div class="faq-item">¿Cuánto tiempo toma empezar a ver resultados?</div>
-<div class="faq-item">¿Qué incluye el programa?</div>
-<div class="faq-item">¿Qué pasa si no me funciona?</div>
-<div class="faq-item">¿Voy a tener contacto con Ramiro?</div>
-<div class="faq-item">¿Cuánto tiempo tengo que dedicarle por día?</div>
-<div class="faq-item">¿Es necesario invertir en anuncios desde el principio?</div>
-<div class="faq-item">¿Qué diferencia a Sell Your Knowledge de otros programas?</div>
-<div class="faq-item">¿Puedo acceder desde cualquier lugar del mundo?</div>
-<div class="faq-item">¿Cómo empiezo?</div>
+    }
 
-</div>
+  });
 
-<div class="footer">
+},{threshold:0.6});
 
-<img src="a.png" class="footer-logo">
-
-<div class="footer-links">
-<span>Política de<br>Privacidad</span>
-<span>Protección de<br>Datos</span>
-<span>Anexo de Protección de<br>Datos</span>
-<span>Términos y<br>Condiciones</span>
-<span>Descargo de<br>Responsabilidad sobre<br>ingresos</span>
-</div>
-
-</div>
-</div>
-
+counters.forEach(c => counterObserver.observe(c));
+</script>
 </body>
 </html>
+
